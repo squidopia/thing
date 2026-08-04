@@ -1,241 +1,241 @@
-const questions = [
+const newQuestions = [
 {
-    question: "[EASY] What does CPU stand for?",
+    question: "[EASY] What does GPU stand for?",
     answers: [
-        "Central Processing Unit",
-        "Computer Power Unit",
-        "Central Program Utility",
-        "Core Processing Utility"
+        "Graphics Processing Unit",
+        "General Processing Utility",
+        "Graphical Power Unit",
+        "Graphics Performance User"
     ],
     correct: 0,
-    explanation: "CPU stands for Central Processing Unit. It is the main processor that executes instructions and performs calculations."
+    explanation: "GPU stands for Graphics Processing Unit. It is specialized hardware designed for rendering graphics and performing parallel computations."
 },
 
 {
-    question: "[MEDIUM] Which number is the binary representation of decimal 10?",
+    question: "[MEDIUM] What number system do computers primarily use?",
     answers: [
-        "1001",
-        "1010",
-        "1110",
-        "1100"
+        "Decimal",
+        "Binary",
+        "Hexadecimal",
+        "Octal"
     ],
     correct: 1,
-    explanation: "10 in decimal equals 1010 in binary (8 + 2 = 10)."
+    explanation: "Computers use binary because electronic circuits naturally represent two states: on and off (1 and 0)."
 },
 
 {
-    question: "[EASY] Which memory is the fastest?",
+    question: "[EASY] Which device is used to enter text into a computer?",
     answers: [
-        "HDD",
-        "SSD",
-        "RAM",
-        "L1 Cache"
+        "Monitor",
+        "Keyboard",
+        "Speaker",
+        "Printer"
     ],
-    correct: 3,
-    explanation: "L1 Cache is built directly into the CPU, making it much faster than RAM, SSDs, or HDDs."
+    correct: 1,
+    explanation: "A keyboard is an input device used to enter text, numbers, and commands."
 },
 
 {
-    question: "[MEDIUM] If A = 1 and B = 0, what is A AND B?",
+    question: "[MEDIUM] What does USB stand for?",
     answers: [
-        "0",
-        "1",
-        "10",
-        "Undefined"
+        "Universal Serial Bus",
+        "United System Board",
+        "Universal Storage Block",
+        "User Signal Bridge"
     ],
     correct: 0,
-    explanation: "An AND gate outputs 1 only when BOTH inputs are 1. Since B is 0, the result is 0."
+    explanation: "USB stands for Universal Serial Bus. It is a standard for connecting peripherals and transferring data."
 },
 
 {
-    question: "[EASY] Which component permanently stores files even when the computer is turned off?",
+    question: "[EASY] Which component converts electrical power for a computer?",
     answers: [
-        "RAM",
         "CPU",
+        "RAM",
+        "Power Supply Unit",
+        "GPU"
+    ],
+    correct: 2,
+    explanation: "The Power Supply Unit (PSU) converts electricity from the wall into usable power for computer components."
+},
+
+{
+    question: "[HARD] What does ALU stand for inside a CPU?",
+    answers: [
+        "Advanced Logic Unit",
+        "Arithmetic Logic Unit",
+        "Automatic Loading Utility",
+        "Application Link Unit"
+    ],
+    correct: 1,
+    explanation: "The Arithmetic Logic Unit performs mathematical calculations and logical operations inside the CPU."
+},
+
+{
+    question: "[MEDIUM] Which programming language is commonly used for hardware description?",
+    answers: [
+        "HTML",
+        "Python",
+        "Verilog",
+        "CSS"
+    ],
+    correct: 2,
+    explanation: "Verilog is a hardware description language used to design and simulate digital circuits."
+},
+
+{
+    question: "[HARD] What does Moore's Law describe?",
+    answers: [
+        "Internet speed doubling every year",
+        "CPU transistor counts roughly doubling over time",
+        "Storage prices increasing",
+        "Computer sizes becoming larger"
+    ],
+    correct: 1,
+    explanation: "Moore's Law predicts that transistor counts on integrated circuits approximately double every two years."
+},
+
+{
+    question: "[EASY] What type of memory is volatile?",
+    answers: [
         "SSD",
-        "Cache"
+        "HDD",
+        "RAM",
+        "ROM"
     ],
     correct: 2,
-    explanation: "An SSD is non-volatile storage, meaning it keeps data even when the power is off."
+    explanation: "RAM is volatile memory, meaning it loses its data when power is removed."
 },
 
 {
-    question: "[HARD] What is hexadecimal 0xFF in decimal?",
+    question: "[MEDIUM] What does ROM stand for?",
     answers: [
-        "250",
-        "254",
-        "255",
-        "256"
-    ],
-    correct: 2,
-    explanation: "FF = (15 × 16) + 15 = 240 + 15 = 255."
-},
-
-{
-    question: "[EASY] What does RAM stand for?",
-    answers: [
-        "Random Access Memory",
-        "Read Access Memory",
-        "Rapid Access Module",
-        "Read Application Memory"
+        "Read Only Memory",
+        "Random Output Memory",
+        "Rapid Operating Module",
+        "Read Operation Machine"
     ],
     correct: 0,
-    explanation: "RAM stands for Random Access Memory. It temporarily stores data that the CPU is actively using."
+    explanation: "ROM stands for Read Only Memory. It stores permanent instructions such as firmware."
 },
 
 {
-    question: "[MEDIUM] Which logic gate outputs 1 only when the inputs are different?",
+    question: "[HARD] Which CPU component stores small amounts of frequently used data?",
     answers: [
-        "AND",
-        "OR",
-        "XOR",
-        "NOT"
-    ],
-    correct: 2,
-    explanation: "XOR (Exclusive OR) outputs 1 only when exactly one input is 1."
-},
-
-{
-    question: "[EASY] What is ASCII primarily used for?",
-    answers: [
-        "Storing images",
-        "Representing text characters",
-        "Compressing files",
-        "Encrypting passwords"
-    ],
-    correct: 1,
-    explanation: "ASCII assigns numbers to letters, digits, punctuation, and control characters so computers can represent text."
-},
-
-{
-    question: "[EASY] Which component connects all of the major parts of a computer together?",
-    answers: [
+        "Cache",
+        "Hard Drive",
         "Power Supply",
-        "Motherboard",
-        "Graphics Card",
-        "CPU Cooler"
-    ],
-    correct: 1,
-    explanation: "The motherboard is the main circuit board that connects the CPU, RAM, storage, graphics card, and other hardware."
-},
-
-{
-    question: "[MEDIUM] What is the primary function of a GPU?",
-    answers: [
-        "Managing internet traffic",
-        "Rendering graphics and parallel processing",
-        "Providing stable voltage to the CPU",
-        "Compiling high-level programming code"
-    ],
-    correct: 1,
-    explanation: "GPUs are designed to rapidly manipulate and alter memory to accelerate the creation of images, making them legends for gaming and AI."
-},
-
-{
-    question: "[HARD] In networking, what does the acronym TCP stand for?",
-    answers: [
-        "Transfer Control Protocol",
-        "Transmission Control Protocol",
-        "Transport Core Protocol",
-        "Telecommunication Connection Protocol"
-    ],
-    correct: 1,
-    explanation: "TCP stands for Transmission Control Protocol, which ensures reliable, ordered, and error-checked delivery of streams of octets between applications."
-},
-
-{
-    question: "[ULTRA-HARD] How many bits are in a standard IPv4 address?",
-    answers: [
-        "16 bits",
-        "32 bits",
-        "64 bits",
-        "128 bits"
-    ],
-    correct: 1,
-    explanation: "An IPv4 address is 32 bits long, usually written as four octets separated by dots (e.g., 192.168.1.1)."
-},
-
-{
-    question: "[MEDIUM] What does BIOS stand for?",
-    answers: [
-        "Basic Input/Output System",
-        "Built-In Operating Structure",
-        "Binary Internal Operation Software",
-        "Basic Internet Operational Standard"
+        "Motherboard"
     ],
     correct: 0,
-    explanation: "BIOS stands for Basic Input/Output System, responsible for initializing hardware during the booting process."
+    explanation: "CPU cache stores frequently accessed data to allow faster processing."
 },
 
 {
-    question: "[HARD] Which sorting algorithm typically has the best average-case time complexity of O(n log n)?",
+    question: "[ULTRA-HARD] What is the purpose of a compiler?",
     answers: [
-        "Bubble Sort",
-        "Insertion Sort",
-        "Merge Sort",
-        "Selection Sort"
-    ],
-    correct: 2,
-    explanation: "Merge Sort is a divide-and-conquer algorithm that consistently hits O(n log n) time complexity, unlike Bubble Sort which lags at O(n²)."
-},
-
-{
-    question: "[ULTRA-HARD] What is the IEEE 754 standard used for in computing?",
-    answers: [
-        "Representing floating-point numbers",
-        "Defining Ethernet frame structures",
-        "Encrypting wireless network data",
-        "Standardizing USB port pinouts"
+        "Convert source code into machine code",
+        "Cool down the CPU",
+        "Store files permanently",
+        "Connect computers together"
     ],
     correct: 0,
-    explanation: "IEEE 754 is the technical standard for floating-point computation, establishing formats for representing real numbers in binary."
+    explanation: "A compiler translates high-level programming languages into machine code that computers can execute."
 },
 
 {
-    question: "[MEDIUM] Which protocol is securely used to load web pages over an encrypted connection?",
+    question: "[MEDIUM] Which protocol is commonly used to send emails?",
     answers: [
+        "SMTP",
         "HTTP",
-        "FTP",
-        "HTTPS",
-        "SMTP"
+        "DNS",
+        "SSH"
     ],
-    correct: 2,
-    explanation: "HTTPS (Hypertext Transfer Protocol Secure) uses SSL/TLS encryption to keep your web browsing safe from prying eyes."
+    correct: 0,
+    explanation: "SMTP (Simple Mail Transfer Protocol) is used for sending emails between mail servers."
 },
 
 {
-    question: "[HARD] What is the maximum value that can be stored in a single unsigned 8-bit integer?",
+    question: "[HARD] What does DNS do?",
     answers: [
-        "127",
-        "128",
-        "255",
-        "256"
+        "Encrypts files",
+        "Converts domain names into IP addresses",
+        "Creates websites",
+        "Controls CPU speed"
     ],
-    correct: 2,
-    explanation: "An unsigned 8-bit integer ranges from 0 to 255."
+    correct: 1,
+    explanation: "DNS translates human-readable domain names like google.com into IP addresses computers can understand."
 },
 
 {
-    question: "[ULTRA-HARD] In object-oriented programming, what term describes the mechanism of wrapping data and methods into a single unit?",
+    question: "[ULTRA-HARD] What is the purpose of a transistor?",
     answers: [
-        "Inheritance",
-        "Polymorphism",
-        "Encapsulation",
-        "Abstraction"
+        "Store internet data",
+        "Amplify or switch electronic signals",
+        "Display images",
+        "Cool processors"
     ],
-    correct: 2,
-    explanation: "Encapsulation bundles the data and the methods that operate on that data within a single unit, hiding the internal state from the outside world."
+    correct: 1,
+    explanation: "Transistors act as tiny electronic switches and are the building blocks of modern processors."
 },
 
 {
-    question: "[MEDIUM] Which open-source operating system kernel is the foundation for Android and Ubuntu?",
+    question: "[MEDIUM] Which data structure follows FIFO (First In First Out)?",
     answers: [
-        "Windows NT",
-        "Darwin",
-        "Linux",
-        "Unix"
+        "Stack",
+        "Queue",
+        "Tree",
+        "Graph"
+    ],
+    correct: 1,
+    explanation: "A queue follows FIFO, meaning the first item added is the first item removed."
+},
+
+{
+    question: "[HARD] What does RAM speed usually measure?",
+    answers: [
+        "Gigabytes",
+        "Gigahertz",
+        "Megatransfers per second",
+        "Pixels"
     ],
     correct: 2,
-    explanation: "The Linux kernel powers everything from embedded devices and Android phones to massive cloud servers and Ubuntu desktop distributions!"
+    explanation: "Modern RAM speed is commonly measured in MT/s (megatransfers per second), representing data transfer rate."
+},
+
+{
+    question: "[ULTRA-HARD] What is an FPGA?",
+    answers: [
+        "A programmable hardware chip",
+        "A type of battery",
+        "A programming language",
+        "A computer virus"
+    ],
+    correct: 0,
+    explanation: "An FPGA (Field Programmable Gate Array) is a chip that can be configured to implement custom digital circuits."
+},
+
+{
+    question: "[HARD] What does API stand for?",
+    answers: [
+        "Application Programming Interface",
+        "Advanced Program Internet",
+        "Application Process Input",
+        "Automatic Programming Instruction"
+    ],
+    correct: 0,
+    explanation: "An API allows different software systems to communicate with each other."
+},
+
+{
+    question: "[ULTRA-HARD] What is the main purpose of an operating system?",
+    answers: [
+        "Manage hardware and provide services for applications",
+        "Increase internet speed",
+        "Replace the CPU",
+        "Create electricity"
+    ],
+    correct: 0,
+    explanation: "An operating system manages computer hardware, resources, files, and provides an environment for applications to run."
 }
 ];
