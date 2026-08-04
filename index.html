@@ -1,259 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Build-A-CPU</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Engineering Challenge</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-    background:#111827;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-}
-
-.container{
-    width:1000px;
-    max-width:95%;
-    display:grid;
-    grid-template-columns:250px 1fr;
-    gap:25px;
-}
-
-.parts{
-    background:#1f2937;
-    padding:20px;
-    border-radius:12px;
-}
-
-.part{
-    background:#374151;
-    margin:10px 0;
-    padding:12px;
-    border-radius:8px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.part:hover{
-    background:#4b5563;
-    transform:translateX(5px);
-}
-
-.pc{
-    background:#1f2937;
-    border-radius:15px;
-    padding:20px;
-}
-
-.slot{
-    border:2px dashed #555;
-    border-radius:10px;
-    padding:18px;
-    margin:12px 0;
-    transition:.2s;
-}
-
-.slot.filled{
-    border-color:#10b981;
-    background:#064e3b;
-}
-
-button{
-    margin-top:20px;
-    width:100%;
-    padding:14px;
-    font-size:18px;
-    background:#2563eb;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#1d4ed8;
-}
-
-#status{
-    margin-top:20px;
-    font-size:22px;
-    text-align:center;
-}
-
-#specs{
-    margin-top:20px;
-    line-height:1.8;
-}
-
-.led{
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    background:#500;
-    display:inline-block;
-    margin-left:10px;
-}
-
-.led.on{
-    background:#00ff66;
-    box-shadow:0 0 20px #00ff66;
-    animation:blink 1s infinite;
-}
-
-@keyframes blink{
-    50%{
-        opacity:.5;
-    }
-}
-</style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
 
-<div class="parts">
-<h2>Components</h2>
+    <!-- Start Screen -->
+    <section id="start-screen">
+        <h1>🖥️ Computer Engineering Challenge</h1>
 
-<div class="part" data="motherboard">Motherboard</div>
-<div class="part" data="cpu">CPU</div>
-<div class="part" data="ram">RAM</div>
-<div class="part" data="ssd">SSD</div>
-<div class="part" data="gpu">GPU (Optional)</div>
-<div class="part" data="psu">Power Supply</div>
+        <p>
+            Test your knowledge of computer engineering!
+            You'll answer questions about binary, hexadecimal,
+            logic gates, CPUs, memory, digital electronics,
+            and computer hardware.
+        </p>
 
-<p style="margin-top:20px;font-size:13px;color:#bbb;">
-Click a component, then click its slot.
-</p>
+        <ul>
+            <li>✅ Random questions every game</li>
+            <li>💡 Learn from explanations</li>
+            <li>🏆 Earn a final rank</li>
+        </ul>
+
+        <button id="startBtn">Start Quiz</button>
+    </section>
+
+    <!-- Quiz Screen -->
+    <section id="quiz-screen" class="hidden">
+
+        <div class="top-bar">
+
+            <div class="progress-container">
+                <div id="progress"></div>
+            </div>
+
+            <div class="score">
+                Score:
+                <span id="score">0</span>
+            </div>
+
+        </div>
+
+        <div class="question-box">
+
+            <h2 id="question-number">
+                Question 1 / 20
+            </h2>
+
+            <h1 id="question">
+                Loading...
+            </h1>
+
+            <div id="answers" class="answers">
+            </div>
+
+            <div id="feedback" class="feedback hidden">
+
+                <h2 id="feedback-title"></h2>
+
+                <p id="explanation"></p>
+
+                <button id="nextBtn">
+                    Next Question →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Results Screen -->
+    <section id="result-screen" class="hidden">
+
+        <h1>🎉 Quiz Complete!</h1>
+
+        <h2 id="final-score">
+            0 / 20
+        </h2>
+
+        <h3 id="percentage">
+            0%
+        </h3>
+
+        <div id="rank">
+            Beginner
+        </div>
+
+        <div class="stats">
+
+            <div>
+                ✅ Correct:
+                <span id="correct-count">0</span>
+            </div>
+
+            <div>
+                ❌ Incorrect:
+                <span id="wrong-count">0</span>
+            </div>
+
+        </div>
+
+        <button id="restartBtn">
+            Play Again
+        </button>
+
+    </section>
 
 </div>
 
-<div class="pc">
-
-<h1>Computer Builder <span class="led" id="led"></span></h1>
-
-<div class="slot" data-slot="motherboard">Motherboard</div>
-<div class="slot" data-slot="cpu">CPU</div>
-<div class="slot" data-slot="ram">RAM</div>
-<div class="slot" data-slot="ssd">SSD</div>
-<div class="slot" data-slot="gpu">GPU (Optional)</div>
-<div class="slot" data-slot="psu">Power Supply</div>
-
-<button id="boot">Power On</button>
-
-<div id="status"></div>
-
-<div id="specs"></div>
-
-</div>
-
-</div>
-
-<script>
-
-let selected=null;
-
-const installed={};
-
-document.querySelectorAll(".part").forEach(part=>{
-
-part.onclick=()=>{
-selected=part.dataset.data;
-
-document.querySelectorAll(".part").forEach(x=>x.style.outline="none");
-part.style.outline="3px solid #3b82f6";
-}
-
-});
-
-document.querySelectorAll(".slot").forEach(slot=>{
-
-slot.onclick=()=>{
-
-if(!selected) return;
-
-if(slot.dataset.slot!==selected) return;
-
-installed[selected]=true;
-
-slot.classList.add("filled");
-slot.textContent="✔ "+slot.dataset.slot.toUpperCase();
-
-selected=null;
-
-document.querySelectorAll(".part").forEach(x=>x.style.outline="none");
-
-}
-
-});
-
-document.getElementById("boot").onclick=()=>{
-
-const needed=["motherboard","cpu","ram","ssd","psu"];
-
-const missing=needed.filter(x=>!installed[x]);
-
-const status=document.getElementById("status");
-const specs=document.getElementById("specs");
-const led=document.getElementById("led");
-
-if(missing.length){
-
-status.innerHTML="❌ Boot Failed";
-
-specs.innerHTML=
-"<b>Missing:</b><br>"+missing.join("<br>");
-
-led.classList.remove("on");
-
-return;
-
-}
-
-led.classList.add("on");
-
-status.innerHTML="✅ System Booted Successfully";
-
-let score=0;
-
-score+=100;
-
-if(installed.gpu)
-score+=40;
-
-score+=Object.keys(installed).length*5;
-
-specs.innerHTML=`
-<b>System Information</b><br><br>
-
-CPU Installed ✔<br>
-RAM Installed ✔<br>
-SSD Installed ✔<br>
-Motherboard Installed ✔<br>
-Power Supply Installed ✔<br>
-GPU: ${installed.gpu?"Installed":"Integrated Graphics"}<br><br>
-
-Performance Score:
-<b>${score}</b><br><br>
-
-Status:
-Running
-`;
-
-}
-
-</script>
+<script src="questions.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
